@@ -7,6 +7,7 @@ function onSignIn(googleUser) {
     $(".g-signin2").css("display", "none");
 
     console.log("Hello");
+    console.log(googleUser);
 }
 
 function signOut() {
