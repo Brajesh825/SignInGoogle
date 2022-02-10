@@ -6,8 +6,8 @@ function onSignIn(googleUser) {
     $(".data").css("display", "block");
     $(".g-signin2").css("display", "none");
 
-    console.log("Hello");
     console.log(googleUser);
+    console.log(googleUser.getBasicProfile());
 }
 
 function signOut() {
