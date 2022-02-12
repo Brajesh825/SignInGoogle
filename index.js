@@ -1,4 +1,4 @@
-function onSignIn(googleUser) {
+async function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     $("#name").text(profile.getName());
     $("#email").text(profile.getEmail());
@@ -6,8 +6,21 @@ function onSignIn(googleUser) {
     $(".data").css("display", "block");
     $(".g-signin2").css("display", "none");
 
-    console.log(googleUser);
-    console.log(googleUser.getBasicProfile());
+    const idToken = googleUser.wc.id_token;
+
+    const data = { idToken };
+    const response = await fetch(
+        "https://backend.unbelong.in/google-service/login", {
+            method: "POST",
+            headers: {
+                "content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }
+    );
+
+    const responseObj = await response.json();
+    console.log(responseObj);
 }
 
 function signOut() {
